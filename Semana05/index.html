@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        input[type="url"] {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #btnAgregar {
+            background: #667eea;
+            color: white;
+        }
+
+        #btnAgregar:hover {
+            background: #5568d3;
+        }
+
+        #btnEliminar {
+            background: #f5576c;
+            color: white;
+        }
+
+        #btnEliminar:hover:not(:disabled) {
+            background: #e04555;
+        }
+
+        #btnEliminar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            min-height: 150px;
+        }
+
+        .imagen-container {
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .imagen-container img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .imagen-container:hover {
+            transform: scale(1.05);
+        }
+
+        .imagen-container.seleccionada {
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+        }
+
+        .mensaje-vacio {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Galería de Imágenes</h1>
+        
+        <div class="controls">
+            <input type="url" id="inputUrl" placeholder="Ingresa la URL de la imagen...">
+            <button id="btnAgregar">Agregar Imagen</button>
+            <button id="btnEliminar" disabled>Eliminar Seleccionada</button>
+        </div>
+
+        <div class="galeria" id="galeria">
+            <div class="mensaje-vacio">No hay imágenes. ¡Agrega una!</div>
+        </div>
+    </div>
+
+    <script>
+        const inputUrl = document.getElementById('inputUrl');
+        const btnAgregar = document.getElementById('btnAgregar');
+        const btnEliminar = document.getElementById('btnEliminar');
+        const galeria = document.getElementById('galeria');
+        let imagenSeleccionada = null;
+
+        function agregarImagen() {
+            const url = inputUrl.value.trim();
+            if (!url) {
+                alert('Ingresa una URL válida');
+                return;
+            }
+
+            const mensajeVacio = galeria.querySelector('.mensaje-vacio');
+            if (mensajeVacio) mensajeVacio.remove();
+
+            const contenedor = document.createElement('div');
+            contenedor.className = 'imagen-container';
+
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = 'Imagen de galería';
+
+            img.addEventListener('error', () => {
+                alert('No se pudo cargar la imagen');
+                contenedor.remove();
+                if (galeria.children.length === 0) mostrarMensajeVacio();
+            });
+
+            contenedor.addEventListener('click', () => seleccionarImagen(contenedor));
+            contenedor.appendChild(img);
+            galeria.appendChild(contenedor);
+            inputUrl.value = '';
+        }
+
+        function seleccionarImagen(contenedor) {
+            if (imagenSeleccionada) imagenSeleccionada.classList.remove('seleccionada');
+            contenedor.classList.add('seleccionada');
+            imagenSeleccionada = contenedor;
+            btnEliminar.disabled = false;
+        }
+
+        function eliminarImagenSeleccionada() {
+            if (!imagenSeleccionada) return;
+            imagenSeleccionada.remove();
+            imagenSeleccionada = null;
+            btnEliminar.disabled = true;
+            if (galeria.children.length === 0) mostrarMensajeVacio();
+        }
+
+        function mostrarMensajeVacio() {
+            const mensaje = document.createElement('div');
+            mensaje.className = 'mensaje-vacio';
+            mensaje.textContent = 'No hay imágenes. ¡Agrega una!';
+            galeria.appendChild(mensaje);
+        }
+
+        btnAgregar.addEventListener('click', agregarImagen);
+        btnEliminar.addEventListener('click', eliminarImagenSeleccionada);
+
+        inputUrl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') agregarImagen();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 'Delete' || e.key === 'Backspace') && imagenSeleccionada) {
+                if (e.key === 'Backspace' && document.activeElement !== inputUrl) e.preventDefault();
+                eliminarImagenSeleccionada();
+            }
+        });
+    </script>
+</body>
+</html>

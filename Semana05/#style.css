@@ -1,0 +1,99 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    padding:20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+h1{
+    text-align:center;
+    color:#333;
+    margin-bottom:25px;
+}
+
+.controls{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+input{
+    flex:1;
+    padding:10px 15px;
+    border:2px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#667eea;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    color:#fff;
+    transition:.3s;
+}
+
+#btnAgregar{background:#667eea}
+#btnAgregar:hover{background:#5568d3}
+
+#btnEliminar{background:#f5576c}
+#btnEliminar:hover:not(:disabled){background:#e04555}
+#btnEliminar:disabled{opacity:.5;cursor:not-allowed}
+
+.galeria{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:15px;
+    min-height:150px;
+}
+
+.imagen-container{
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+    border:3px solid transparent;
+    transition:.3s;
+}
+
+.imagen-container img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.imagen-container:hover{transform:scale(1.05)}
+
+.seleccionada{
+    border-color:#667eea;
+    box-shadow:0 0 15px rgba(102,126,234,.6);
+}
+
+.mensaje-vacio{
+    grid-column:1/-1;
+    text-align:center;
+    color:#999;
+    padding:40px;
+}
