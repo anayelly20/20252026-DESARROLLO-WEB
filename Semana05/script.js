@@ -65,4 +65,3 @@ document.addEventListener("keydown",e=>{
         eliminarImagenSeleccionada();
     }
 });
-
