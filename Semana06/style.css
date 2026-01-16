@@ -1,3 +1,4 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +6,7 @@
   font-family: Arial, sans-serif;
 }
 
+/* FONDO */
 body {
   height: 100vh;
   background: linear-gradient(135deg, #667eea, #764ba2);
@@ -13,6 +15,7 @@ body {
   align-items: center;
 }
 
+/* CONTENEDOR */
 .container {
   background: white;
   padding: 30px;
@@ -27,6 +30,7 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* TEXTO */
 h1 {
   text-align: center;
   margin-bottom: 20px;
@@ -41,40 +45,35 @@ label {
   font-size: 14px;
 }
 
+/* INPUTS BASE */
 input {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
   border-radius: 8px;
   border: 2px solid #ccc;
-  transition: .3s;
+  transition: all .3s ease;
 }
 
-/* 🎨 COLOR BASE POR CADA CAMPO */
-#nombre {
-  border-color: #3b82f6; /* azul */
+/* 🎨 COLOR INDIVIDUAL POR CAMPO (SOLO CUANDO NO ESTÁ VALIDADO) */
+input:not(.valid):not(.invalid)#nombre {
+  border-color: #3b82f6;
 }
 
-#email {
-  border-color: #f59e0b; /* naranja */
+input:not(.valid):not(.invalid)#email {
+  border-color: #f59e0b;
 }
 
-#password {
-  border-color: #8b5cf6; /* morado */
+input:not(.valid):not(.invalid)#password {
+  border-color: #8b5cf6;
 }
 
-#confirmPassword {
-  border-color: #ec4899; /* rosado */
+input:not(.valid):not(.invalid)#confirmPassword {
+  border-color: #ec4899;
 }
 
-#edad {
-  border-color: #14b8a6; /* verde agua */
-}
-
-/* ✅ VÁLIDO */
-input.valid {
-  border-color: #10b981;
-  background: #f0fdf4;
+input:not(.valid):not(.invalid)#edad {
+  border-color: #14b8a6;
 }
 
 /* ❌ INVÁLIDO */
@@ -83,6 +82,13 @@ input.invalid {
   background: #fef2f2;
 }
 
+/* ✅ VÁLIDO */
+input.valid {
+  border-color: #10b981;
+  background: #f0fdf4;
+}
+
+/* MENSAJES */
 small {
   font-size: 12px;
   color: #ef4444;
@@ -93,6 +99,7 @@ small.show {
   display: block;
 }
 
+/* BOTONES */
 .actions {
   display: flex;
   gap: 10px;
@@ -106,6 +113,11 @@ button {
   border: none;
   font-size: 15px;
   cursor: pointer;
+  transition: .3s;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
 
 button:disabled {
@@ -122,6 +134,7 @@ button:disabled {
   background: #e5e7eb;
 }
 
+/* MENSAJE DE ÉXITO */
 .success-message {
   margin-top: 15px;
   text-align: center;
