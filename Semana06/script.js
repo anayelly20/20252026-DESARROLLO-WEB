@@ -18,8 +18,7 @@ function validar(inputId, errorId, ok) {
   const input = f(inputId);
   const error = f(errorId);
 
-  input.classList.remove("valid", "invalid");
-  input.classList.add(ok ? "valid" : "invalid");
+  input.className = ok ? "valid" : "invalid";
   error.classList.toggle("show", !ok);
   activar();
 }
