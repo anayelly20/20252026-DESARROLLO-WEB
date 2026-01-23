@@ -1,4 +1,4 @@
-// Arreglo de productos iniciales
+// Productos iniciales
 const productos = [
     {
         nombre: "Laptop HP",
@@ -33,7 +33,7 @@ function crearProductoHTML(producto) {
     `;
 }
 
-// Mostrar productos
+// Mostrar productos en pantalla
 function renderizarProductos() {
     const lista = document.getElementById("listaProductos");
     lista.innerHTML = "";
@@ -72,7 +72,7 @@ function agregarProducto() {
 
 // Evento del botón
 document.getElementById("btnAgregar")
-        .addEventListener("click", agregarProducto);
+    .addEventListener("click", agregarProducto);
 
-// Cargar productos al iniciar
+// Mostrar productos al cargar la página
 renderizarProductos();
