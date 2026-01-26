@@ -1,78 +1,61 @@
-// Productos iniciales
-const productos = [
+let productos = [
     {
-        nombre: "Laptop HP",
-        precio: 899.99,
-        descripcion: "Laptop con procesador Intel Core i7, 16GB RAM y 512GB SSD."
+        nombre: "Ana Lopez",
+        precio: 30,
+        descripcion: "cebolla",
+        imagen: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=300"
     },
     {
-        nombre: "Mouse Inalámbrico",
-        precio: 25.99,
-        descripcion: "Mouse ergonómico con conexión Bluetooth."
-    },
-    {
-        nombre: "Teclado Mecánico",
-        precio: 79.99,
-        descripcion: "Teclado mecánico RGB con switches Cherry MX."
-    },
-    {
-        nombre: "Monitor 27 pulgadas",
-        precio: 299.99,
-        descripcion: "Monitor Full HD con tecnología IPS."
+        nombre: "lapto",
+        precio: 500,
+        descripcion: "computadora",
+        imagen: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300"
     }
 ];
 
-// Crear HTML de un producto
-function crearProductoHTML(producto) {
-    return `
-        <li class="producto">
-            <h3>${producto.nombre}</h3>
-            <p class="precio">$${producto.precio.toFixed(2)}</p>
-            <p>${producto.descripcion}</p>
-        </li>
-    `;
-}
+const lista = document.getElementById("listaProductos");
+const btnAgregar = document.getElementById("btnAgregar");
 
-// Mostrar productos en pantalla
 function renderizarProductos() {
-    const lista = document.getElementById("listaProductos");
     lista.innerHTML = "";
 
     productos.forEach(producto => {
-        lista.innerHTML += crearProductoHTML(producto);
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <div class="producto-info">
+                <div class="producto-nombre">${producto.nombre}</div>
+                <div class="producto-precio">${producto.precio}</div>
+                <div class="producto-descripcion">${producto.descripcion}</div>
+            </div>
+            ${producto.imagen ? `<img src="${producto.imagen}" class="producto-imagen">` : ""}
+        `;
+
+        lista.appendChild(li);
     });
 }
 
-// Agregar producto nuevo
 function agregarProducto() {
-    const nuevosProductos = [
-        {
-            nombre: "Auriculares Bluetooth",
-            precio: 59.99,
-            descripcion: "Auriculares inalámbricos con cancelación de ruido."
-        },
-        {
-            nombre: "Webcam HD",
-            precio: 89.99,
-            descripcion: "Cámara web Full HD con micrófono."
-        },
-        {
-            nombre: "Disco Duro Externo 1TB",
-            precio: 65.99,
-            descripcion: "Almacenamiento portátil USB 3.0."
-        }
-    ];
+    const nombre = document.getElementById("nombre").value;
+    const precio = document.getElementById("precio").value;
+    const descripcion = document.getElementById("descripcion").value;
+    const imagen = document.getElementById("imagen").value;
 
-    const productoAleatorio =
-        nuevosProductos[Math.floor(Math.random() * nuevosProductos.length)];
+    if (!nombre || !precio || !descripcion) {
+        alert("Completa todos los campos obligatorios");
+        return;
+    }
 
-    productos.push(productoAleatorio);
+    productos.push({ nombre, precio, descripcion, imagen });
+
+    document.getElementById("nombre").value = "";
+    document.getElementById("precio").value = "";
+    document.getElementById("descripcion").value = "";
+    document.getElementById("imagen").value = "";
+
     renderizarProductos();
 }
 
-// Evento del botón
-document.getElementById("btnAgregar")
-    .addEventListener("click", agregarProducto);
+btnAgregar.addEventListener("click", agregarProducto);
 
-// Mostrar productos al cargar la página
 renderizarProductos();

@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Dinámica de Productos</title>
-
-    <!-- Enlace al archivo CSS -->
-    <link rel="stylesheet" href="estilos.css">
+    <title>Lista de Productos</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Lista de Productos</h1>
-        <ul id="listaProductos"></ul>
-        <button id="btnAgregar">Agregar Nuevo Producto</button>
+    <h1>Lista de Productos</h1>
+
+    <div class="form-container">
+        <div class="input-group">
+            <input type="text" id="nombre" placeholder="Nombre del producto">
+            <input type="number" id="precio" placeholder="Precio (ej. 500)">
+            <input type="text" id="descripcion" placeholder="Descripción breve">
+            <input type="text" id="imagen" placeholder="URL de imagen (opcional)">
+        </div>
+        <button id="btnAgregar">Agregar Producto</button>
     </div>
 
-    <!-- Enlace al archivo JavaScript -->
+    <ul id="listaProductos"></ul>
+
     <script src="script.js"></script>
 </body>
 </html>
