@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+#btnAlerta {
+  transition: 0.3s;
+}
+
+#btnAlerta:hover {
+  transform: scale(1.1);
+}
+
+table {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+form {
+  background-color: #f8f9fa;
+}
+
+footer i {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+footer i:hover {
+  color: #0d6efd;
+}
