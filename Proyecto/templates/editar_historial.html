@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>✏️ Editar Historial</h2>
+
+<form action="{{ url_for('editar_historial', id=registro[0]) }}" method="POST" class="card shadow p-4">
+    <label for="tipo" class="form-label">Tipo</label>
+    <input type="text" id="tipo" name="tipo" value="{{ registro[2] }}" class="form-control mb-3" required>
+
+    <label for="descripcion" class="form-label">Descripción</label>
+    <textarea id="descripcion" name="descripcion" class="form-control mb-3" required>{{ registro[3] }}</textarea>
+
+    <label for="fecha" class="form-label">Fecha</label>
+    <input type="date" id="fecha" name="fecha" value="{{ registro[4] }}" class="form-control mb-3" required>
+
+    <label for="veterinario" class="form-label">Veterinario</label>
+    <input type="text" id="veterinario" name="veterinario" value="{{ registro[5] }}" class="form-control mb-3" required>
+
+    <button class="btn btn-warning">Guardar cambios</button>
+    <a href="{{ url_for('historial') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="container py-4">
+    <h2>📑 Reportes en PDF</h2>
+    <p>Selecciona el tipo de reporte y presiona "Generar reporte PDF". El archivo se descargará automáticamente.</p>
+
+    <div class="card shadow-sm p-4 mb-4">
+        <form action="{{ url_for('generar_reporte') }}" method="POST">
+            <div class="mb-3 row">
+                <label for="tipo_reporte" class="col-sm-2 col-form-label">Tipo de reporte</label>
+                <div class="col-sm-10">
+                    <select name="tipo_reporte" id="tipo_reporte" class="form-select" required>
+                        <option value="" disabled selected>-- Selecciona --</option>
+                        <option value="general">General (productos + mascotas + citas + historial)</option>
+                        <option value="general">General (Productos+Mascotas+Citas+Historial)</option>
+                        <option value="productos">Productos</option>
+                        <option value="mascotas">Mascotas</option>
+                        <option value="citas">Citas</option>
+                        <option value="historial">Historial Médico</option>
+                        <option value="usuarios">Usuarios</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn btn-primary">Generar reporte PDF</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="alert alert-info" role="alert">
+        <strong>Información:</strong> Cada reporte incluye título, fecha de generación y datos de la tabla.
+        Si no existen registros, el PDF mostrará un mensaje de <em>No existen registros disponibles para este reporte</em>.
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Estructura de tablas disponibles</h5>
+            <ul>
+                <li><strong>productos:</strong> id, nombre, descripcion, precio, cantidad</li>
+                <li><strong>mascotas:</strong> id, nombre, especie, raza, edad, propietario, telefono</li>
+                <li><strong>citas:</strong> id, mascota_id, fecha, hora, motivo, veterinario, estado</li>
+                <li><strong>historial:</strong> id, mascota_id, tipo, descripcion, fecha, veterinario</li>
+                <li><strong>usuarios:</strong> id_usuario, usuario</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

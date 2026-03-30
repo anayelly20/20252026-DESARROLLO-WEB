@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>🐶 Mascotas</h2>
+
+<a href="/nueva_mascota" class="btn btn-primary mb-3">➕ Nueva mascota</a>
+
+<table class="table table-bordered table-striped shadow">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Especie</th>
+            <th>Raza</th>
+            <th>Edad</th>
+            <th>Propietario</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% if mascotas %}
+            {% for m in mascotas %}
+            <tr>
+                <td>{{ m[0] }}</td>
+                <td>{{ m[1] }}</td>
+                <td>{{ m[2] }}</td>
+                <td>{{ m[3] }}</td>
+                <td>{{ m[4] }}</td>
+                <td>{{ m[5] }}</td>
+                <td>{{ m[6] }}</td>
+                <td>
+                    <a href="{{ url_for('editar_mascota', id=m[0]) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ url_for('eliminar_mascota', id=m[0]) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar mascota?');">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="8" class="text-center">No hay mascotas registradas</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}

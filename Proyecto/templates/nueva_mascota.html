@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">🐶 Registrar Nueva Mascota</h2>
+                    
+                    <form action="/guardar_mascota" method="POST">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre de la mascota</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="especie" class="form-label">Especie</label>
+                            <select class="form-control" id="especie" name="especie" required>
+                                <option value="">Selecciona una especie</option>
+                                <option value="Perro">🐕 Perro</option>
+                                <option value="Gato">🐱 Gato</option>
+                                <option value="Conejo">🐰 Conejo</option>
+                                <option value="Ave">🦜 Ave</option>
+                                <option value="Reptil">🐍 Reptil</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="raza" class="form-label">Raza</label>
+                            <input type="text" class="form-control" id="raza" name="raza" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edad" class="form-label">Edad (años)</label>
+                            <input type="number" class="form-control" id="edad" name="edad" step="0.5" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="propietario" class="form-label">Nombre del propietario</label>
+                            <input type="text" class="form-control" id="propietario" name="propietario" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono del propietario</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono" required>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">💾 Guardar Mascota</button>
+                            <a href="/mascotas" class="btn btn-secondary">← Volver</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

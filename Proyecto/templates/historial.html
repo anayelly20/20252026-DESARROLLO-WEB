@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>💉 Historial Médico</h2>
+
+<a href="/nuevo_historial" class="btn btn-warning mb-3">➕ Nuevo registro</a>
+
+<table class="table table-bordered table-striped shadow">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Mascota</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Veterinario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% if historial %}
+            {% for h in historial %}
+            <tr>
+                <td>{{ h[0] }}</td>
+                <td>{{ h[1] }}</td>
+                <td>{{ h[2] }}</td>
+                <td>{{ h[3] }}</td>
+                <td>{{ h[4] }}</td>
+                <td>{{ h[5] }}</td>
+                <td>
+                    <a href="{{ url_for('detalle_historial', id=h[0]) }}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{{ url_for('editar_historial', id=h[0]) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ url_for('eliminar_historial', id=h[0]) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este registro?');">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7" class="text-center">No hay registros en el historial</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}

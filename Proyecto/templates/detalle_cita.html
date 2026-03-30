@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>📌 Detalles de la Cita</h2>
+
+<div class="card shadow p-4 mb-4">
+    <p><strong>ID:</strong> {{ cita[0] }}</p>
+    <p><strong>Mascota:</strong> {{ cita[1] }}</p>
+    <p><strong>Fecha:</strong> {{ cita[2] }}</p>
+    <p><strong>Hora:</strong> {{ cita[3] }}</p>
+    <p><strong>Motivo:</strong> {{ cita[4] }}</p>
+    <p><strong>Veterinario:</strong> {{ cita[5] }}</p>
+    <p><strong>Estado:</strong> {{ cita[6] }}</p>
+</div>
+
+<a href="{{ url_for('citas') }}" class="btn btn-secondary">Volver a Citas</a>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-success">
+                <div class="card-body p-5">
+                    <h2 class="card-title mb-4 text-center text-success">🔐 Ingresar a mi Cuenta</h2>
+                    
+                    {% if error %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ error }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="usuario" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">🔓 Ingresar</button>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <p class="text-center text-muted">¿No tienes cuenta?</p>
+                    <div class="d-grid gap-2">
+                        <a href="/registro" class="btn btn-info">📝 Crear Nueva Cuenta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

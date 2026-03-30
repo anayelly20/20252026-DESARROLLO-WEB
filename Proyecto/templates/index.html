@@ -1,0 +1,194 @@
+
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+{% if current_user.is_authenticated %}
+    <!-- Contenido si está autenticado -->
+    <div class="text-center mb-5">
+        <h1 class="text-success">¡Bienvenido, {{ current_user.usuario }}! 🐶🐱</h1>
+        <p class="lead">
+            Sistema de gestión veterinaria
+        </p>
+    </div>
+
+    <hr>
+
+    <h2 class="mb-4 text-center">📊 Panel Administrador</h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card text-center shadow h-100">
+                <div class="card-body">
+                    <h5>🐶 Mascotas</h5>
+                    <p>Registro de mascotas</p>
+                    <a href="/mascotas" class="btn btn-primary w-100">Gestionar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center shadow h-100">
+                <div class="card-body">
+                    <h5>📅 Citas</h5>
+                    <p>Agenda veterinaria</p>
+                    <a href="/citas" class="btn btn-success w-100">Ver citas</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center shadow h-100">
+                <div class="card-body">
+                    <h5>💉 Historial</h5>
+                    <p>Vacunas y tratamientos</p>
+                    <a href="/historial" class="btn btn-warning w-100">Historial</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center shadow h-100">
+                <div class="card-body">
+                    <h5>🛒 Productos</h5>
+                    <p>Inventario veterinario</p>
+                    <a href="/productos" class="btn btn-dark w-100">Administrar</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="mt-5">
+
+    <!-- SECCIÓN EXTRA PROFESIONAL -->
+    <div class="row text-center mt-4">
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5>🐾 Atención Profesional</h5>
+                    <p>Cuidamos la salud de tus mascotas con calidad</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5>💊 Productos de Calidad</h5>
+                    <p>Medicinas y alimentos certificados</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5>📅 Gestión Fácil</h5>
+                    <p>Control total desde el sistema</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% else %}
+    <!-- Contenido si NO está autenticado -->
+    <div class="text-center mb-5">
+        <h1 class="text-success" style="font-size: 3em;">Clínica Veterinaria DAG 🐶🐱</h1>
+        <p class="lead" style="font-size: 1.5em;">
+            Sistema profesional de gestión veterinaria
+        </p>
+        <p class="text-muted" style="font-size: 1.1em;">Organiza mascotas, citas, historial médico e inventario</p>
+    </div>
+
+    <hr>
+
+    <div class="row text-center mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow border-success">
+                <div class="card-body p-5">
+                    <h3 class="mb-4">👤 Acceso al Sistema</h3>
+                    <p class="text-muted mb-4">Por favor, inicia sesión o crea una nueva cuenta para acceder al panel de administración</p>
+                    
+                    <div class="d-grid gap-3">
+                        <a href="/login" class="btn btn-success btn-lg">
+                            🔐 Ingresar a tu Cuenta
+                        </a>
+                        <a href="/registro" class="btn btn-info btn-lg">
+                            📝 Crear Nueva Cuenta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mt-5">
+
+    <!-- SECCIÓN CARACTERÍSTICAS -->
+    <h2 class="mb-4 text-center mt-5">✨ Características Principales</h2>
+
+    <div class="row g-4 mt-4">
+
+        <div class="col-md-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3>🐶 Gestión de Mascotas</h3>
+                    <p class="text-muted">Registra y administra datos completos de cada mascota</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3>📅 Agendamiento de Citas</h3>
+                    <p class="text-muted">Organiza citas veterinarias de forma eficiente</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3>💉 Historial Médico</h3>
+                    <p class="text-muted">Mantén registro de vacunas y tratamientos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3>🛒 Inventario de Productos</h3>
+                    <p class="text-muted">Administra medicinas y alimentos veterinarios</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3>🔐 Sistema Seguro</h3>
+                    <p class="text-muted">Acceso protegido con contraseñas encriptadas</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h3>⚡ Fácil de Usar</h3>
+                    <p class="text-muted">Interfaz amigable e intuitiva</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endif %}
+
+{% endblock %}

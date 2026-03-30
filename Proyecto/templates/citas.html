@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>📅 Citas Veterinarias</h2>
+
+<a href="/nueva_cita" class="btn btn-success mb-3">➕ Agendar cita</a>
+
+<table class="table table-bordered table-striped shadow">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Mascota</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Motivo</th>
+            <th>Veterinario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% if citas %}
+            {% for c in citas %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+                <td>{{ c[4] }}</td>
+                <td>{{ c[5] }}</td>
+                <td>
+                    <a href="{{ url_for('detalle_cita', id=c[0]) }}" class="btn btn-info btn-sm">Detalles</a>
+                    <a href="{{ url_for('editar_cita', id=c[0]) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ url_for('cancelar_cita', id=c[0]) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Cancelar esta cita?');">Cancelar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7" class="text-center">No hay citas agendadas</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}

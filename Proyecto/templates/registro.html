@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-info">
+                <div class="card-body p-5">
+                    <h2 class="card-title mb-4 text-center text-info">📝 Crear Nueva Cuenta</h2>
+                    
+                    {% if mensaje %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{ mensaje }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="usuario" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Elige un nombre de usuario" required>
+                            <small class="text-muted">Mínimo 3 caracteres, sin espacios</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa una contraseña segura" required>
+                            <small class="text-muted">Mínimo 6 caracteres</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password_confirm" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Confirma tu contraseña" required>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-info btn-lg">✅ Crear Cuenta</button>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <p class="text-center text-muted">¿Ya tienes cuenta?</p>
+                    <div class="d-grid gap-2">
+                        <a href="/login" class="btn btn-success">🔐 Ingresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

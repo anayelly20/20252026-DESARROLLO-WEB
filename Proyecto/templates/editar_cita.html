@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>✏️ Editar Cita</h2>
+
+<form action="{{ url_for('editar_cita', id=cita[0]) }}" method="POST" class="card shadow p-4">
+    <label for="fecha" class="form-label">Fecha</label>
+    <input type="date" id="fecha" name="fecha" value="{{ cita[2] }}" class="form-control mb-3" required>
+
+    <label for="hora" class="form-label">Hora</label>
+    <input type="time" id="hora" name="hora" value="{{ cita[3] }}" class="form-control mb-3" required>
+
+    <label for="motivo" class="form-label">Motivo</label>
+    <textarea id="motivo" name="motivo" class="form-control mb-3" required>{{ cita[4] }}</textarea>
+
+    <label for="veterinario" class="form-label">Veterinario</label>
+    <input type="text" id="veterinario" name="veterinario" value="{{ cita[5] }}" class="form-control mb-3" required>
+
+    <button class="btn btn-warning">Guardar cambios</button>
+    <a href="{{ url_for('citas') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="card shadow p-4">
+    <h3 class="text-success">➕ Agregar Producto</h3>
+
+    <form action="/guardar" method="POST">
+
+        <input type="text" name="nombre" placeholder="Nombre"
+        class="form-control mb-3" required>
+
+        <textarea name="descripcion"
+        class="form-control mb-3"
+        placeholder="Descripción del producto" required></textarea>
+
+        <input type="number" name="precio"
+        class="form-control mb-3" placeholder="Precio" required>
+
+        <input type="number" name="cantidad"
+        class="form-control mb-3" placeholder="Cantidad" required>
+
+        <button class="btn btn-success w-100">
+            Guardar Producto
+        </button>
+
+    </form>
+</div>
+
+{% endblock %}

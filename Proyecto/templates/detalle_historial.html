@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2>📌 Detalles del Historial</h2>
+
+<div class="card shadow p-4 mb-4">
+    <p><strong>ID:</strong> {{ registro[0] }}</p>
+    <p><strong>Mascota:</strong> {{ registro[1] }}</p>
+    <p><strong>Tipo:</strong> {{ registro[2] }}</p>
+    <p><strong>Descripción:</strong> {{ registro[3] }}</p>
+    <p><strong>Fecha:</strong> {{ registro[4] }}</p>
+    <p><strong>Veterinario:</strong> {{ registro[5] }}</p>
+</div>
+
+<a href="{{ url_for('historial') }}" class="btn btn-secondary">Volver al Historial</a>
+
+{% endblock %}
